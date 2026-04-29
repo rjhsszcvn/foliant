@@ -1,0 +1,2 @@
+# foliant
+Every document, handled.
