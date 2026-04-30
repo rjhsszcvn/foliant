@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+:root {
+  /* Foliant brand tokens */
+  --ink: #0A0E27;
+  --ink-soft: #1A1F3A;
+  --ink-muted: #6B7280;
+  --paper: #FAFAF7;
+  --paper-warm: #F5F2EA;
+  --gold: #C8A961;
+  --gold-deep: #A88940;
+  --gold-soft: #E8D9B0;
+  --border: #E5E5E0;
+  --border-strong: #D1D1C7;
+
+  /* Semantic mappings */
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --primary: var(--ink);
+  --accent: var(--gold);
+  --muted: var(--ink-muted);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-muted: var(--ink-muted);
+  --color-paper: var(--paper);
+  --color-paper-warm: var(--paper-warm);
+  --color-gold: var(--gold);
+  --color-gold-deep: var(--gold-deep);
+  --color-gold-soft: var(--gold-soft);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-fraunces);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: var(--ink);
+    --foreground: var(--paper);
+    --border: #2A2F4A;
+    --border-strong: #3A3F5A;
+  }
+}
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+  font-feature-settings: "cv11", "ss01", "ss03";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Utility: serif heading */
+.font-serif {
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-feature-settings: "ss01", "ss02";
+}
+
+/* Subtle paper texture for premium feel */
+.bg-paper-grain {
+  background-color: var(--paper);
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(10, 14, 39, 0.015) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+/* Selection styling */
+::selection {
+  background: var(--gold);
+  color: var(--ink);
+}
+
+/* Scrollbar premium look */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--paper);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--ink-muted);
+}
