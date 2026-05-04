@@ -63,7 +63,7 @@ export async function mergePdfs(
   }
 
   const outBytes = await merged.save({ useObjectStreams: true });
-  const blob = new Blob([outBytes], { type: "application/pdf" });
+  const blob = new Blob([new Uint8Array(outBytes as any)], { type: "application/pdf" });
 
   return {
     blob,

@@ -1,4 +1,5 @@
 "use client";
+import { JsonLd, toolSchema, breadcrumbSchema } from "@/components/JsonLd";
 
 import Link from "next/link";
 import { useState } from "react";
@@ -46,6 +47,8 @@ export default function MergePdfPage() {
 
   return (
     <main className="flex-1">
+      <JsonLd data={toolSchema({ name: "Merge PDF", description: "Combine multiple PDFs into a single document, in order.", slug: "merge-pdf" })} />
+      <JsonLd data={breadcrumbSchema({ name: "Merge PDF", slug: "merge-pdf" })} />
       <header className="border-b border-border">
         <div className="mx-auto max-w-4xl px-6 h-16 flex items-center justify-between">
           <Link href="/" className="font-serif text-xl tracking-tight">Foliant</Link>

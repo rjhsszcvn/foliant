@@ -78,7 +78,7 @@ export async function extractRange(
   const copied = await out.copyPages(src, pageIndices);
   copied.forEach((p) => out.addPage(p));
   const outBytes = await out.save({ useObjectStreams: true });
-  const blob = new Blob([outBytes], { type: "application/pdf" });
+  const blob = new Blob([new Uint8Array(outBytes as any)], { type: "application/pdf" });
   const base = file.name.replace(/\.pdf$/i, "");
   return {
     blob,
