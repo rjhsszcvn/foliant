@@ -99,7 +99,7 @@ export async function imagesToPdf(
   }
 
   const outBytes = await pdf.save({ useObjectStreams: true });
-  const blob = new Blob([outBytes], { type: "application/pdf" });
+  const blob = new Blob([new Uint8Array(outBytes as any)], { type: "application/pdf" });
   return {
     blob,
     pageCount: pdf.getPageCount(),

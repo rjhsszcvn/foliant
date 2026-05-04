@@ -54,7 +54,7 @@ export async function compressLossless(file: File): Promise<CompressResult> {
   // If resaving didn't help (or made it worse), give back the original.
   if (resavedSize >= originalSize) {
     return {
-      blob: new Blob([bytes], { type: "application/pdf" }),
+      blob: new Blob([new Uint8Array(bytes as any)], { type: "application/pdf" }),
       originalSize,
       newSize: originalSize,
       savedPct: 0,
@@ -63,7 +63,7 @@ export async function compressLossless(file: File): Promise<CompressResult> {
     };
   }
 
-  const blob = new Blob([outBytes], { type: "application/pdf" });
+  const blob = new Blob([new Uint8Array(outBytes as any)], { type: "application/pdf" });
   return {
     blob,
     originalSize,
@@ -151,7 +151,7 @@ export async function compressLossy(
 
   if (newSize >= originalSize) {
     return {
-      blob: new Blob([bytes], { type: "application/pdf" }),
+      blob: new Blob([new Uint8Array(bytes as any)], { type: "application/pdf" }),
       originalSize,
       newSize: originalSize,
       savedPct: 0,
@@ -160,7 +160,7 @@ export async function compressLossy(
     };
   }
 
-  const blob = new Blob([outBytes], { type: "application/pdf" });
+  const blob = new Blob([new Uint8Array(outBytes as any)], { type: "application/pdf" });
   return {
     blob,
     originalSize,
