@@ -159,7 +159,7 @@ export default function HomePage() {
 
       <footer className="border-t border-border">
         <div className="mx-auto max-w-6xl px-6 py-12 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="font-serif text-lg">Foliant</p>
+          <div className="flex items-center gap-6 text-sm"><p className="font-serif text-lg">Foliant</p><Link href="/about" className="text-ink-muted hover:text-ink transition-colors">About</Link><Link href="/privacy" className="text-ink-muted hover:text-ink transition-colors">Privacy</Link><Link href="/contact" className="text-ink-muted hover:text-ink transition-colors">Contact</Link></div>
           <p className="text-xs text-ink-muted">
             Copyright 2026 Foliant. Every document, handled.
           </p>

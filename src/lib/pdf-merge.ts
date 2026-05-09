@@ -35,7 +35,12 @@ export async function mergePdfs(
       });
     }
 
-    const bytes = await file.arrayBuffer();
+    let bytes: ArrayBuffer;
+    try {
+      bytes = await file.arrayBuffer();
+    } catch {
+      throw new Error(`Could not read "${file.name}". Try selecting it again.`);
+    }
 
     let src;
     try {

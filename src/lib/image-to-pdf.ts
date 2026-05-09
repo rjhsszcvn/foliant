@@ -55,7 +55,12 @@ export async function imagesToPdf(
     const file = files[i];
     onProgress?.({ current: i + 1, total: files.length, filename: file.name });
 
-    const bytes = await file.arrayBuffer();
+    let bytes: ArrayBuffer;
+    try {
+      bytes = await file.arrayBuffer();
+    } catch {
+      throw new Error(`Could not read "${file.name}". On mobile, try selecting the file again — sometimes the system handle expires.`);
+    }
     const isPng = file.type === "image/png" || /\.png$/i.test(file.name);
     const isJpg =
       file.type === "image/jpeg" || /\.jpe?$/i.test(file.name);

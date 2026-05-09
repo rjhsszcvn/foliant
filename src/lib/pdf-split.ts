@@ -59,7 +59,12 @@ export function parseRanges(raw: string, totalPages: number): number[] {
 }
 
 export async function getPageCount(file: File): Promise<number> {
-  const bytes = await file.arrayBuffer();
+  let bytes: ArrayBuffer;
+  try {
+    bytes = await file.arrayBuffer();
+  } catch {
+    throw new Error(`Could not read "${file.name}". Try selecting it again.`);
+  }
   const pdf = await PDFDocument.load(bytes);
   return pdf.getPageCount();
 }
@@ -71,7 +76,12 @@ export async function extractRange(
   if (pageIndices.length === 0) {
     throw new Error("No pages selected.");
   }
-  const bytes = await file.arrayBuffer();
+  let bytes: ArrayBuffer;
+  try {
+    bytes = await file.arrayBuffer();
+  } catch {
+    throw new Error(`Could not read "${file.name}". Try selecting it again.`);
+  }
   const src = await PDFDocument.load(bytes);
   const out = await PDFDocument.create();
   out.setCreator("Foliant");
@@ -92,7 +102,12 @@ export async function splitAllPages(
   file: File,
   onProgress?: (p: SplitProgress) => void
 ): Promise<SplitResult> {
-  const bytes = await file.arrayBuffer();
+  let bytes: ArrayBuffer;
+  try {
+    bytes = await file.arrayBuffer();
+  } catch {
+    throw new Error(`Could not read "${file.name}". Try selecting it again.`);
+  }
   const src = await PDFDocument.load(bytes);
   const total = src.getPageCount();
   const zip = new JSZip();

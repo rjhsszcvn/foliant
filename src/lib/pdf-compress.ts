@@ -39,7 +39,12 @@ const QUALITY_MAP: Record<LossyQuality, number> = {
  */
 export async function compressLossless(file: File): Promise<CompressResult> {
   const originalSize = file.size;
-  const bytes = await file.arrayBuffer();
+  let bytes: ArrayBuffer;
+  try {
+    bytes = await file.arrayBuffer();
+  } catch {
+    throw new Error(`Could not read "${file.name}". Try selecting it again.`);
+  }
   const pdf = await PDFDocument.load(bytes);
   pdf.setTitle("");
   pdf.setAuthor("");
@@ -108,7 +113,12 @@ export async function compressLossy(
   const quality = QUALITY_MAP[options.quality];
 
   const pdfjsLib = await getPdfJs();
-  const bytes = await file.arrayBuffer();
+  let bytes: ArrayBuffer;
+  try {
+    bytes = await file.arrayBuffer();
+  } catch {
+    throw new Error(`Could not read "${file.name}". Try selecting it again.`);
+  }
   const loadingTask = pdfjsLib.getDocument({ data: bytes });
   const pdfDoc = await loadingTask.promise;
   const total = pdfDoc.numPages;
