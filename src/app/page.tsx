@@ -24,6 +24,11 @@ const tools = [
     description: "Convert pages to high-resolution PNG or JPG.",
   },
   {
+    slug: "watermark-pdf",
+    name: "Watermark PDF",
+    description: "Add text watermarks to every page. Adjustable opacity and angle.",
+  },
+  {
     slug: "image-to-pdf",
     name: "Image to PDF",
     description: "Bundle JPGs and PNGs into a polished PDF.",

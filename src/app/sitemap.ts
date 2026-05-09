@@ -8,6 +8,7 @@ const TOOLS = [
   "compress-pdf",
   "pdf-to-image",
   "image-to-pdf",
+  "watermark-pdf",
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
